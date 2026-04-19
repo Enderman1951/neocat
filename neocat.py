@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Neocat (ncat) - A simple CLI text viewer with vim-like navigation.
+Neocat (neocat) - A simple CLI text viewer with vim-like navigation.
 """
 
 import curses
@@ -24,16 +24,16 @@ class NeocatViewer:
             with open(self.filepath, 'r', encoding='utf-8') as f:
                 self.lines = f.read().splitlines()
         except FileNotFoundError:
-            print(f"ncat: {self.filepath}: No such file or directory")
+            print(f"neocat: {self.filepath}: No such file or directory")
             sys.exit(1)
         except IsADirectoryError:
-            print(f"ncat: {self.filepath}: Is a directory")
+            print(f"neocat: {self.filepath}: Is a directory")
             sys.exit(1)
         except PermissionError:
-            print(f"ncat: {self.filepath}: Permission denied")
+            print(f"neocat: {self.filepath}: Permission denied")
             sys.exit(1)
         except Exception as e:
-            print(f"ncat: {self.filepath}: {e}")
+            print(f"neocat: {self.filepath}: {e}")
             sys.exit(1)
         
         if not self.lines:
@@ -59,7 +59,7 @@ class NeocatViewer:
             visible_lines = self._get_visible_lines(height - 1)
             
             for i, line in enumerate(visible_lines):
-                # Truncate line to fit width
+                # Truneocate line to fit width
                 display_line = line[:width - 1] if len(line) >= width - 1 else line
                 try:
                     stdscr.addstr(i, 0, display_line, curses.color_pair(2))
@@ -82,7 +82,7 @@ class NeocatViewer:
             
             status = f"{self.filepath.name} | Lines: {total_lines} | {current_line}/{total_lines} ({percentage}%)"
             
-            # Truncate status to fit within width
+            # Truneocate status to fit within width
             status = status[:width - 1]
             
             # Draw status bar with inverse colors
@@ -204,7 +204,7 @@ class NeocatViewer:
 
 def main():
     if len(sys.argv) < 2:
-        print("Usage: ncat <filepath>")
+        print("Usage: neocat <filepath>")
         print("\nControls:")
         print("  j / ↓       - Scroll down")
         print("  k / ↑       - Scroll up")
